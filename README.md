@@ -167,19 +167,36 @@ We subtracted the constant contact bonus offset from the Active agent's curve to
 
 We performed rigorous statistical testing using `analyze_performance.py` (N=3 seeds).
 
-#### Convergence Speed (Time-to-Threshold)
-We measured how many frames it took for each agent to reach 90% of its final performance.
+#### Convergence Speed
+We measured how many frames it took for each training run to reach 90% of its final asymptotic performance.
 
 ![Time to Threshold](./plots/analysis_time_to_threshold.png)
 
-| Metric | Original | Active | Improvement |
-|---|---|---|---|
-| **Frames to Converge** | ~417,000 | ~132,000 | **3.1x Faster** |
-| **Stability (CV)** | 0.062 (Lower is better) | 0.051 | **18% More Stable** |
+The **Active** agent converges drastically faster:
+- **Active**: ~132,000 frames
+- **Original**: ~417,000 frames
+- **Result**: **3.1x Faster Learning**
+
+#### Stability Analysis
+We measured stability using two key metrics:
+
+1.  **Training Reliability (Coefficient of Variation)**
+    - Measures consistency across random seeds: $CV = \sigma / \mu$ (lower is better).
+    - **Original**: 0.062 (~6.2% variance)
+    - **Active**: 0.051 (~5.1% variance)
+    - **Result**: The Active agent is **18% more reliable** across seeds.
+
+2.  **Convergence Variance (Time-to-Threshold Std Dev)**
+    - Measures how predictable the learning speed is.
+    - **Original**: ±52,523 frames
+    - **Active**: ±66,449 frames
+    - **Result**: While the Active agent is faster, it has slightly higher variance in *when* it converges, likely due to initial exploration of the contact reward.
 
 #### Significance Tests
-- **Independent t-test**: `p < 0.001` (***) — The difference in learning speed and accumulated reward is statistically significant.
-- **Conclusion**: The contact reward successfully accelerates learning without distorting the final optimal policy.
+- **Independent t-test**: `p < 0.001` (***) — The difference in mean reward is statistically significant.
+- **Result**: The null hypothesis (that contact reward has no effect) is rejected.
+
+**Conclusion**: The contact reward successfully accelerates learning and improves final reliability without distorting the optimal policy.
 
 ---
 
