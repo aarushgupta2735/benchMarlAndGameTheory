@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────
+#  Experiment Configuration
+#  Shared by both 'original' and 'active' scenarios for
+#  fair comparison.
+# ─────────────────────────────────────────────────────────
+
+# Environment
+n_agents: 3
+max_steps: 200
+num_envs: 32
+
+# Training
+total_frames: 300000
+frames_per_batch: 6000
+minibatch_size: 400
+n_minibatch_iters: 4
+
+# Optimiser / PPO
+lr: 0.0005
+gamma: 0.99
+gae_lambda: 0.95
+clip_epsilon: 0.2
+entropy_coef: 0.01
+critic_coef: 1.0
+clip_grad_norm: true
+max_grad_norm: 5.0
+
+# Network (MLP)
+hidden_dim: 256
+share_params: true
+centralised_critic: true
+
+# Device  ("cpu" or "cuda")
+device: cpu
+
+# Seeds for --run-all
+seeds: [0, 1, 2]
+
+# ── Active scenario specific ──
+contact_reward_coeff: 0.5
+# contact_threshold: null        # null => auto = agent_radius * 3.5
