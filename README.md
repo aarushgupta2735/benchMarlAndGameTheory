@@ -31,19 +31,21 @@ rod, but never dominates the task objective.
 
 ```
 Code/
-├── scenarios/
-│   ├── balance_original.py       # Verbatim VMAS balance scenario
-│   └── balance_active.py         # + rod-contact activity reward
-├── training/
-│   └── train_mappo.py            # TorchRL MAPPO training script
+├── analyze_performance.py        # Statistical analysis (convergence, significance)
+├── compare_results.py            # Basic reward plotting & normalization
 ├── configs/
 │   └── experiment_config.yaml    # Shared hyperparameters
-├── compare_results.py            # Plot comparison curves
-├── results/                      # Created at training time
-│   ├── original/seed_0/...
-│   └── active/seed_0/...
-├── plots/                        # Created by compare_results.py
-└── README.md                     # This file
+├── plots/                        # Generated plots (time-to-threshold, boxplots)
+├── README.md                     # This file
+├── results/                      # Training logs (CSV format)
+│   ├── active/
+│   └── original/
+├── run_colab.ipynb               # Notebook for Colab execution
+├── run_full_training.py          # Orchestrates training across seeds
+├── scenarios/
+│   ├── balance_active.py         # Modified scenario with contact reward
+│   └── balance_original.py       # Baseline VMAS scenario
+└── train_mappo.py                # Core MAPPO training script
 ```
 
 ---
